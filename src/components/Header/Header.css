@@ -1,0 +1,9 @@
+.header {
+    background-color: var(--background-color);
+    border-bottom: 2px solid var(--divider-color);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 30px;
+    height: 90px;
+}
