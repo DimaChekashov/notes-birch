@@ -5,9 +5,11 @@ import SearchBox from '../SearchBox/SearchBox';
 import "./Header.css";
 
 interface Props {
+    setEditMode(e: boolean): void;
+    editMode: boolean;
 }
 
-const Header: React.FC<Props> = () => {
+const Header: React.FC<Props> = ({setEditMode, editMode}) => {
   return (
     <div className="header">
         <Button 
@@ -19,6 +21,7 @@ const Header: React.FC<Props> = () => {
             type="primary" 
             size="large" 
             icon={<EditOutlined />} 
+            onClick={() => setEditMode(!editMode)}
         >Edit</Button>
         <Button 
             type="primary" 

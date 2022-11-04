@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import SimpleMDE from "react-simplemde-editor";
+import Markdown from 'marked-react';
 import "easymde/dist/easymde.min.css";
 import "./Workspace.css";
 
@@ -8,7 +9,7 @@ interface Props {
 }
 
 const Workspace: React.FC<Props> = ({editMode}) => {
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>("# Marked in the browser\n\nRendered by **marked**.");
 
   const onChange = useCallback((value: string) => {
     setValue(value);
@@ -19,7 +20,9 @@ const Workspace: React.FC<Props> = ({editMode}) => {
       {editMode ? (
         <SimpleMDE className="editor" value={value} onChange={onChange} />
       ) : (
-        <p>Place for marked text</p>
+        <div className="markdown">
+          <Markdown value={"# Marked in the browser\n\nRendered by **marked**."} />
+        </div>
       )}
     </div>
   )

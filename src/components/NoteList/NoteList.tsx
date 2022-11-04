@@ -1,15 +1,18 @@
 import React from 'react';
+import { Note } from '../../types/types';
 import ListItem from '../ListItem/ListItem';
 import "./NoteList.css";
 
-const NoteList: React.FC = () => {
+interface Props {
+  notes: Note[];
+}
+
+const NoteList: React.FC<Props> = ({notes}) => {
   return (
     <div className="note-list">
-      <ListItem active />
-      <ListItem />
-      <ListItem />
-      <ListItem />
-      <ListItem />
+      {notes.map((note) => <ListItem
+        note={note}
+      />)}
     </div>
   )
 }
