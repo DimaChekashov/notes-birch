@@ -1,0 +1,5 @@
+.sidebar {
+    background-color: var(--sidebar-color);
+    border-right: 2px solid var(--divider-color);
+    height: calc(100vh - 90px);
+}
