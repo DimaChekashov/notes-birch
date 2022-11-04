@@ -5,7 +5,7 @@ import Workspace from '../components/Workspace/Workspace';
 import './App.css';
 
 function App() {
-  const [editMode, setEditMode] = useState<boolean>(false);
+  const [editMode, setEditMode] = useState<boolean>(true);
 
   return (
     <div className="app">
