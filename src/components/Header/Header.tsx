@@ -10,9 +10,10 @@ interface Props {
     setEditMode(e: boolean): void;
     setCreateNoteModal(e: boolean): void;
     editMode: boolean;
+    deleteNote(): void;
 }
 
-const Header: React.FC<Props> = ({setEditMode, editMode, setCreateNoteModal}) => {
+const Header: React.FC<Props> = ({setEditMode, editMode, setCreateNoteModal, deleteNote}) => {
 
   const showDeleteConfirm = () => {
     confirm({
@@ -22,11 +23,8 @@ const Header: React.FC<Props> = ({setEditMode, editMode, setCreateNoteModal}) =>
       okType: 'danger',
       cancelText: 'No',
       onOk() {
-        console.log('OK');
-      },
-      onCancel() {
-        console.log('Cancel');
-      },
+        deleteNote();
+      }
     });
   };
 

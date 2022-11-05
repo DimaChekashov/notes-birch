@@ -11,7 +11,7 @@ import './App.css';
 const App: React.FC = () => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [notes, setNotes] = useState<Note[]>([]);
-  const [currentNote, setCurrentNote] = useState<Note>();
+  const [currentNote, setCurrentNote] = useState<Note | undefined>(undefined);
 
   const [nameNoteInput, setNameNoteInput] = useState<string>("");
   const nameNoteInputRef = useRef<InputRef>(null);
@@ -67,7 +67,14 @@ const App: React.FC = () => {
   }
 
   const deleteNote = () => {
-    
+    try {
+      if(currentNote?.id) {
+        db.notes.delete(currentNote.id);
+        setCurrentNote(undefined);
+      }
+    } catch (error) {
+      alert(error);
+    }
   }
 
   return (
@@ -77,6 +84,7 @@ const App: React.FC = () => {
           editMode={editMode} 
           setEditMode={setEditMode} 
           setCreateNoteModal={setIsCreateNoteModalOpen}
+          deleteNote={deleteNote}
         />
         <div className="app__layout">
           <Sidebar 
