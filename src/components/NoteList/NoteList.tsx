@@ -10,7 +10,8 @@ interface Props {
 const NoteList: React.FC<Props> = ({notes}) => {
   return (
     <div className="note-list">
-      {notes.map((note) => <ListItem
+      {notes.map((note) => <ListItem 
+        key={note.id}
         note={note}
       />)}
     </div>

@@ -43,6 +43,5 @@
 .list-item__text span {
     color: var(--additional-font-color);
     font-weight: 700;
-    font-size: 16px;
     margin-right: 10px;
 }
