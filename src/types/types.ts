@@ -3,5 +3,5 @@ export interface Note {
     title: string;
     date: string;
     additionalText: string;
-    text: string;
+    mdText: string;
 }

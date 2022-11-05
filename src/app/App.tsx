@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header/Header';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Workspace from '../components/Workspace/Workspace';
 import { Note } from '../types/types';
+import { useLiveQuery } from "dexie-react-hooks";
+import { db } from '../db';
 import './App.css';
 
 const noteDb: Note[] = [
@@ -11,14 +13,14 @@ const noteDb: Note[] = [
     title: "Title",
     date: "01.11.11",
     additionalText: "additional text",
-    text: "# Marked in the browser\n\nRendered by **marked**."
+    mdText: "# Marked in the browser\n\nRendered by **marked**."
   },
   {
     id: 2,
     title: "Title 2",
     date: "02.11.11",
     additionalText: "additional text 2",
-    text: "# Marked in the browser\n\nRendered by **marked**."
+    mdText: "# Marked in the browser\n\nRendered by **marked**."
   }
 ];
 
