@@ -11,9 +11,13 @@ interface Props {
     setCreateNoteModal(e: boolean): void;
     editMode: boolean;
     deleteNote(): void;
+    searchQuery: {
+      query: string;
+      setQuery: React.Dispatch<React.SetStateAction<string>>;
+    }
 }
 
-const Header: React.FC<Props> = ({setEditMode, editMode, setCreateNoteModal, deleteNote}) => {
+const Header: React.FC<Props> = ({setEditMode, editMode, setCreateNoteModal, deleteNote, searchQuery}) => {
 
   const showDeleteConfirm = () => {
     confirm({
@@ -49,7 +53,12 @@ const Header: React.FC<Props> = ({setEditMode, editMode, setCreateNoteModal, del
             icon={<DeleteOutlined />}
             onClick={showDeleteConfirm}
         >Delete</Button>
-        <SearchBox />
+        <SearchBox
+          searchQuery={{
+            query: searchQuery.query,
+            setQuery: searchQuery.setQuery
+          }}
+        />
     </div>
   )
 }

@@ -3,9 +3,23 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 import "./SearchBox.css";
 
-const SearchBox: React.FC = () => {
+interface Props {
+  searchQuery: {
+    query: string;
+    setQuery: React.Dispatch<React.SetStateAction<string>>;
+  }
+}
+
+const SearchBox: React.FC<Props> = ({searchQuery}) => {
   return (
-    <Input className='search-box' size="large" placeholder="large size" prefix={<SearchOutlined />} />
+    <Input 
+      value={searchQuery.query}
+      onChange={e => searchQuery.setQuery(e.target.value)}
+      className="search-box" 
+      size="large" 
+      placeholder="Search note..." 
+      prefix={<SearchOutlined />} 
+    />
   )
 }
 

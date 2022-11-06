@@ -1,3 +1,9 @@
 .note-list {
     padding: 15px 10px;
 }
+
+.empty-list-title {
+    font-size: 24px;
+    font-weight: 500;
+    padding: 20px;
+}

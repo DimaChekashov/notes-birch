@@ -12,10 +12,11 @@ const App: React.FC = () => {
   const [editMode, setEditMode] = useState<boolean>(false);
   const [notes, setNotes] = useState<Note[]>([]);
   const [currentNote, setCurrentNote] = useState<Note | undefined>(undefined);
-
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  
   const [nameNoteInput, setNameNoteInput] = useState<string>("");
   const nameNoteInputRef = useRef<InputRef>(null);
-
+  
   const [isCreateNoteModalOpen, setIsCreateNoteModalOpen] = useState<boolean>(false);
 
   useLiveQuery(
@@ -86,11 +87,16 @@ const App: React.FC = () => {
           setEditMode={setEditMode} 
           setCreateNoteModal={setIsCreateNoteModalOpen}
           deleteNote={deleteNote}
+          searchQuery={{
+            query: searchQuery,
+            setQuery: setSearchQuery
+          }}
         />
         <div className="app__layout">
           <Sidebar 
             notes={notes} 
             setCurrentNote={setCurrentNote}
+            searchQuery={searchQuery}
           />
           <Workspace 
             editMode={editMode} 
