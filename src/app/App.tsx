@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Modal, Button, Input, InputRef } from 'antd';
+import { Modal, Button, Input, InputRef, notification } from 'antd';
 import Header from '../components/Header/Header';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Workspace from '../components/Workspace/Workspace';
@@ -21,8 +21,7 @@ const App: React.FC = () => {
 
   useLiveQuery(
     async () => {
-      const notes = await db.notes
-        .toArray();
+      const notes = await db.notes.toArray();
 
       setNotes(notes);
     }
@@ -31,18 +30,32 @@ const App: React.FC = () => {
   const createNote = () => {
     if(nameNoteInput) {
       try {
-        db.notes.add({
+        const option = {
           title: nameNoteInput,
           date: Date.now(),
           additionalText: "additional text",
           mdText: "# Type your note"
+        }
+        const note = db.notes.add(option);
+
+        note.then((e) => {
+          setCurrentNote({
+            id: e as number,
+            ...option
+          });
         })
       } catch (error) {
-        alert(error);
+        notification['error']({
+          message: error as string
+        });
       }
       setIsCreateNoteModalOpen(false);
       setNameNoteInput("");
     } else {
+      notification['error']({
+        message: 'Enter note name!',
+        duration: 2.5
+      });
       nameNoteInputRef.current!.focus({
         cursor: 'start',
       });
@@ -64,7 +77,9 @@ const App: React.FC = () => {
         })
       }
     } catch (error) {
-      alert(error);
+      notification['error']({
+        message: error as string
+      });
     }
   }
 
@@ -75,7 +90,9 @@ const App: React.FC = () => {
         setCurrentNote(undefined);
       }
     } catch (error) {
-      alert(error);
+      notification['error']({
+        message: error as string
+      });
     }
   }
 
