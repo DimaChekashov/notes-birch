@@ -3,26 +3,33 @@
     border-radius: 12px;
     position: relative;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
 }
 
-.list-item.active {
+.list-item:hover {
     background-color: rgba(92, 92, 92, 0.5);
 }
 
-.list-item.active::after {
+.list-item.active {
+    background-color: var(--primary-color);
+}
+
+.list-item.active::after,
+.list-item:hover::after {
     opacity: 0;
 }
 
 .list-item::after {
     content: "";
     display: block;
-    width: calc(100% - 12px);
+    width: calc(100% - 24px);
     height: 1px;
     background-color: rgba(92, 92, 92, 0.5);
     position: absolute;
     bottom: 0;
-    left: 6px;
-    right: 6px;
+    left: 12px;
+    right: 12px;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .list-item__heading {

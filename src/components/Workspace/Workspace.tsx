@@ -18,7 +18,7 @@ const Workspace: React.FC<Props> = ({
   },
   updateNote
 }) => {
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>(currentNote.mdText);
 
   useEffect(() => {
     setValue(currentNote.mdText);

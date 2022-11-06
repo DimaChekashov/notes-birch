@@ -5,11 +5,15 @@ import "./NoteList.css";
 
 interface Props {
   notes: Note[];
-  setCurrentNote(e: Note): void;
   searchQuery: string;
+  setEditMode(e: boolean): void;
+  currentNote: {
+    note: Note | undefined;
+    setNote(e: Note): void;
+  };
 }
 
-const NoteList: React.FC<Props> = ({notes, setCurrentNote, searchQuery}) => {
+const NoteList: React.FC<Props> = ({notes, currentNote, searchQuery, setEditMode}) => {
   const [noteList, setNoteList] = useState<Note[]>(notes);
 
   useEffect(() => {
@@ -24,9 +28,13 @@ const NoteList: React.FC<Props> = ({notes, setCurrentNote, searchQuery}) => {
     <div className="note-list">
       {noteList.length !== 0 ? (
         noteList.map((note: Note) => <ListItem 
+          active={currentNote.note?.id === note.id}
           key={note.id}
           note={note}
-          setCurrentNote={setCurrentNote}
+          onClick={() => {
+            setEditMode(false);
+            currentNote.setNote(note);
+          }}
         />)
       ) : (
         <div className="empty-list-title">Empty Note list</div>

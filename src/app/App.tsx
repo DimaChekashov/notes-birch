@@ -83,10 +83,13 @@ const App: React.FC = () => {
     <>
       <div className="app">
         <Header 
-          editMode={editMode} 
-          setEditMode={setEditMode} 
           setCreateNoteModal={setIsCreateNoteModalOpen}
           deleteNote={deleteNote}
+          currentNote={currentNote}
+          editMode={{
+            status: editMode,
+            setStatus: setEditMode
+          }}
           searchQuery={{
             query: searchQuery,
             setQuery: setSearchQuery
@@ -95,7 +98,11 @@ const App: React.FC = () => {
         <div className="app__layout">
           <Sidebar 
             notes={notes} 
-            setCurrentNote={setCurrentNote}
+            currentNote={{
+              note: currentNote,
+              setNote: setCurrentNote
+            }}
+            setEditMode={setEditMode}
             searchQuery={searchQuery}
           />
           <Workspace 

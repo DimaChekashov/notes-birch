@@ -5,18 +5,24 @@ import "./ListItem.css";
 
 interface Props {
   active?: boolean;
+  onClick(): void;
   note: Note;
-  setCurrentNote(e: Note): void;
 }
 
-const ListItem: React.FC<Props> = ({active = false, note, setCurrentNote}) => {
+const ListItem: React.FC<Props> = ({
+  active = false, 
+  onClick, 
+  note
+}) => {
   return (
     <div 
       className={`list-item${active ? " active" : ""}`}
-      onClick={() => setCurrentNote(note)}
+      onClick={onClick}
     >
       <div className="list-item__heading">{note.title}</div>
-      <div className="list-item__text"><span>{getDate(note.date)}</span> {note.additionalText}</div>
+      <div className="list-item__text">
+        <span>{getDate(note.date)}</span> {note.additionalText}
+      </div>
     </div>
   )
 }
