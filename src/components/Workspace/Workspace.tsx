@@ -27,7 +27,7 @@ const Workspace: React.FC<Props> = ({
   const onChange = useCallback((value: string) => {
     setValue(value);
     updateNote(value);
-  }, []);
+  }, [updateNote]);
   
   return (
     <div className="workspace">

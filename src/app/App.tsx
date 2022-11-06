@@ -58,7 +58,8 @@ const App: React.FC = () => {
       if(currentNote?.id) {
         db.notes.update(currentNote.id, {
           date: Date.now(),
-          mdText: value
+          mdText: value,
+          additionalText: value.substring(0, 30) + "..."
         })
       }
     } catch (error) {
