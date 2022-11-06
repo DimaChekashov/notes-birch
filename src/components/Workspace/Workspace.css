@@ -65,3 +65,37 @@
 .markdown h6 {
     color: var(--font-color);
 }
+
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+    .editor .editor-toolbar button {
+        font-size: 14px;
+        height: 30px;
+        min-width: 30px;
+    }
+
+    .markdown,
+    .editor .EasyMDEContainer  {
+        height: calc(100vh - 65px);
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .editor .editor-toolbar {
+        padding: 5px;
+    }
+
+    .editor .editor-toolbar button {
+        font-size: 15px;
+        height: 30px;
+        min-width: 35px;
+    }
+
+    .markdown {
+        padding: 20px 15px;
+    }
+
+    .markdown,
+    .editor .EasyMDEContainer  {
+        height: calc(100vh - 60px);
+    }
+}

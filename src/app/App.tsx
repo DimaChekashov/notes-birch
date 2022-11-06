@@ -102,7 +102,10 @@ const App: React.FC = () => {
         <Header 
           setCreateNoteModal={setIsCreateNoteModalOpen}
           deleteNote={deleteNote}
-          currentNote={currentNote}
+          currentNote={{
+            note: currentNote,
+            setNote: setCurrentNote
+          }}
           editMode={{
             status: editMode,
             setStatus: setEditMode
@@ -115,12 +118,15 @@ const App: React.FC = () => {
         <div className="app__layout">
           <Sidebar 
             notes={notes} 
+            setEditMode={setEditMode}
             currentNote={{
               note: currentNote,
               setNote: setCurrentNote
             }}
-            setEditMode={setEditMode}
-            searchQuery={searchQuery}
+            searchQuery={{
+              query: searchQuery,
+              setQuery: setSearchQuery
+            }}
           />
           <Workspace 
             editMode={editMode} 

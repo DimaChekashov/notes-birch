@@ -8,8 +8,27 @@
     height: 90px;
 }
 
-@media screen and (max-width: 1000px) {
+.back-btn {
+    margin-left: auto;
+}
+
+@media screen and (min-width: 700px) and (max-width: 1000px) {
     .header {
-        
+        padding: 10px 25px;
+        height: 65px;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .header {
+        padding: 10px 15px;
+        height: 60px;
+        gap: 10px;
+    }
+
+    .header__btn {
+        font-size: 13px;
+        height: 32px;
+        padding: 2.4px 5px;
     }
 }

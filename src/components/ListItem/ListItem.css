@@ -56,3 +56,31 @@
     font-weight: 700;
     margin-right: 10px;
 }
+
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+    .list-item {
+        padding: 15px 20px 18px;
+    }
+
+    .list-item__heading {
+        font-size: 18px;
+    }
+
+    .list-item__text {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 699px) {
+    .list-item {
+        padding: 15px 15px 18px;
+    }
+
+    .list-item__heading {
+        font-size: 18px;
+    }
+
+    .list-item__text {
+        font-size: 13px;
+    }
+}
