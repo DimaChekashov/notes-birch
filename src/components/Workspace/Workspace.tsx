@@ -6,17 +6,17 @@ import "./Workspace.css";
 import { Note } from '../../types/types';
 
 interface Props {
-  editMode: boolean;
-  currentNote: Note | undefined;
+  currentNote?: Note;
   updateNote(value: string): void;
+  editMode: boolean;
 }
 
-const Workspace: React.FC<Props> = ({
-  editMode, 
+const Workspace: React.FC<Props> = ({ 
   currentNote = {
     mdText: ""
   },
-  updateNote
+  updateNote,
+  editMode
 }) => {
   const [value, setValue] = useState<string>(currentNote.mdText);
 

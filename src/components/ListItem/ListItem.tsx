@@ -12,16 +12,20 @@ interface Props {
 const ListItem: React.FC<Props> = ({
   active = false, 
   onClick, 
-  note
+  note: {
+    title,
+    date,
+    additionalText
+  }
 }) => {
   return (
     <div 
       className={`list-item${active ? " active" : ""}`}
       onClick={onClick}
     >
-      <div className="list-item__heading">{note.title}</div>
+      <div className="list-item__heading">{title}</div>
       <div className="list-item__text">
-        <span>{getDate(note.date)}</span> {note.additionalText}
+        <span>{getDate(date)}</span> {additionalText}
       </div>
     </div>
   )

@@ -9,34 +9,29 @@ import {
 } from "@ant-design/icons";
 import SearchBox from '../SearchBox/SearchBox';
 import { Note } from '../../types/types';
+import { MOBILE_WIDTH } from '../../utils/consts';
 import "./Header.css";
 
 const { confirm } = Modal;
 
 interface Props {
+  editMode: boolean;
+  setEditMode(e: boolean): void;
+  currentNote?: Note;
+  setCurrentNote(e?: Note): void;
   setCreateNoteModal(e: boolean): void;
   deleteNote(): void;
-  currentNote: {
-    note: Note | undefined;
-    setNote(e: Note | undefined): void;
-  };
-  editMode: {
-    status: boolean;
-    setStatus(e: boolean): void;
-  };
-  searchQuery: {
-    query: string;
-    setQuery: React.Dispatch<React.SetStateAction<string>>;
-  };
 }
 
 const Header: React.FC<Props> = ({
   setCreateNoteModal, 
-  editMode, 
   deleteNote, 
-  searchQuery, 
-  currentNote
+  setCurrentNote,
+  currentNote,
+  setEditMode,
+  editMode
 }) => {
+
   const showDeleteConfirm = () => {
     confirm({
       title: 'Are you sure delete this note?',
@@ -52,13 +47,8 @@ const Header: React.FC<Props> = ({
 
   return (
     <div className="header">
-      {window.innerWidth >= 699 ? (
-        <SearchBox
-          searchQuery={{
-            query: searchQuery.query,
-            setQuery: searchQuery.setQuery
-          }}
-        />
+      {window.innerWidth >= MOBILE_WIDTH ? (
+        <SearchBox />
       ) : undefined}
       <Button 
         className="header__btn"
@@ -67,14 +57,14 @@ const Header: React.FC<Props> = ({
         icon={<FileAddOutlined />}
         onClick={() => setCreateNoteModal(true)}
       >Create a note</Button>
-      {currentNote.note && (
+      {currentNote && (
         <>
           <Button 
             className="header__btn"
             type="primary" 
             size="large" 
             icon={<EditOutlined />} 
-            onClick={() => editMode.setStatus(!editMode.status)}
+            onClick={() => setEditMode(!editMode)}
           >Edit</Button>
           <Button 
             className="header__btn"
@@ -86,15 +76,15 @@ const Header: React.FC<Props> = ({
           >Delete</Button>
         </>
       )}
-      {window.innerWidth < 699 && currentNote.note ? (
+      {window.innerWidth < MOBILE_WIDTH && currentNote ? (
         <>
           <Button 
             className="back-btn"
             shape="circle" 
             icon={<ArrowLeftOutlined />} 
             onClick={() => {
-              currentNote.setNote(undefined);
-              editMode.setStatus(false);
+              setCurrentNote(undefined);
+              setEditMode(false);
             }}
           />
         </>

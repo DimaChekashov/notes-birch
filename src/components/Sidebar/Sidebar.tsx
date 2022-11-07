@@ -1,44 +1,23 @@
 import React from 'react';
 import NoteList from '../NoteList/NoteList';
 import { Note } from '../../types/types';
-import "./Sidebar.css";
 import SearchBox from '../SearchBox/SearchBox';
+import { MOBILE_WIDTH } from '../../utils/consts';
+import "./Sidebar.css";
 
 interface Props {
-  notes: Note[];
-  setEditMode(e: boolean): void;
-  currentNote: {
-    note: Note | undefined;
-    setNote(e: Note): void;
-  };
-  searchQuery: {
-    query: string;
-    setQuery: React.Dispatch<React.SetStateAction<string>>;
-  };
+  currentNote?: Note;
 }
 
-const Sidebar: React.FC<Props> = ({notes, currentNote, searchQuery, setEditMode}) => {
+const Sidebar: React.FC<Props> = ({currentNote}) => {
   return (
-    <div className={`sidebar${currentNote.note ? " show" : ""}`}>
-      {window.innerWidth < 699 ? (
+    <div className={`sidebar${currentNote ? " show" : ""}`}>
+      {window.innerWidth < MOBILE_WIDTH ? (
         <div className="sidebar__header">
-          <SearchBox
-            searchQuery={{
-              query: searchQuery.query,
-              setQuery: searchQuery.setQuery
-            }}
-          />
+          <SearchBox />
         </div>
       ) : undefined}
-      <NoteList 
-        notes={notes} 
-        searchQuery={searchQuery.query} 
-        setEditMode={setEditMode}
-        currentNote={{
-          note: currentNote.note,
-          setNote: currentNote.setNote
-        }}
-      />
+      <NoteList />
     </div>
   )
 }

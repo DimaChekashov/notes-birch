@@ -1,20 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
+import { Context } from '../../context';
 import "./SearchBox.css";
 
-interface Props {
-  searchQuery: {
-    query: string;
-    setQuery: React.Dispatch<React.SetStateAction<string>>;
-  }
-}
+const SearchBox: React.FC = () => {
+  const {searchQuery, setSearchQuery} = useContext(Context);
 
-const SearchBox: React.FC<Props> = ({searchQuery}) => {
   return (
     <Input 
-      value={searchQuery.query}
-      onChange={e => searchQuery.setQuery(e.target.value)}
+      value={searchQuery}
+      onChange={e => setSearchQuery(e.target.value)}
       className="search-box" 
       size="large" 
       placeholder="Search note..." 

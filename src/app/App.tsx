@@ -3,8 +3,9 @@ import { Modal, Button, Input, InputRef, notification } from 'antd';
 import Header from '../components/Header/Header';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Workspace from '../components/Workspace/Workspace';
-import { Note } from '../types/types';
+import { AppContext, Note } from '../types/types';
 import { useLiveQuery } from "dexie-react-hooks";
+import { Context } from '../context';
 import { db } from '../db';
 import './App.css';
 
@@ -96,42 +97,35 @@ const App: React.FC = () => {
     }
   }
 
+  const appContext: AppContext = {
+    searchQuery,
+    setSearchQuery,
+    editMode,
+    setEditMode,
+    currentNote,
+    setCurrentNote,
+    notes
+  };
+
   return (
-    <>
+    <Context.Provider value={appContext}>
       <div className="app">
         <Header 
           setCreateNoteModal={setIsCreateNoteModalOpen}
           deleteNote={deleteNote}
-          currentNote={{
-            note: currentNote,
-            setNote: setCurrentNote
-          }}
-          editMode={{
-            status: editMode,
-            setStatus: setEditMode
-          }}
-          searchQuery={{
-            query: searchQuery,
-            setQuery: setSearchQuery
-          }}
+          currentNote={currentNote}
+          setCurrentNote={setCurrentNote}
+          editMode={editMode}
+          setEditMode={setEditMode}
         />
         <div className="app__layout">
           <Sidebar 
-            notes={notes} 
-            setEditMode={setEditMode}
-            currentNote={{
-              note: currentNote,
-              setNote: setCurrentNote
-            }}
-            searchQuery={{
-              query: searchQuery,
-              setQuery: setSearchQuery
-            }}
+            currentNote={currentNote}
           />
           <Workspace 
-            editMode={editMode} 
             currentNote={currentNote}
             updateNote={updateNote}
+            editMode={editMode}
           />
         </div>
       </div>
@@ -163,7 +157,7 @@ const App: React.FC = () => {
           onChange={(e: React.FormEvent<HTMLInputElement>) => setNameNoteInput(e.currentTarget.value)}
         />
       </Modal>
-    </>
+    </Context.Provider>
   );
 }
 
