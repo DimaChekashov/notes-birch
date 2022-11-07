@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/notes-birch/static/css/main.94633cfc.css",
-    "main.js": "/notes-birch/static/js/main.cdac0cf6.js",
+    "main.js": "/notes-birch/static/js/main.33956cad.js",
     "static/media/marked.cjs": "/notes-birch/static/media/marked.4e377cfd9f5bf4b10d39.cjs",
     "index.html": "/notes-birch/index.html",
     "main.94633cfc.css.map": "/notes-birch/static/css/main.94633cfc.css.map",
-    "main.cdac0cf6.js.map": "/notes-birch/static/js/main.cdac0cf6.js.map"
+    "main.33956cad.js.map": "/notes-birch/static/js/main.33956cad.js.map"
   },
   "entrypoints": [
     "static/css/main.94633cfc.css",
-    "static/js/main.cdac0cf6.js"
+    "static/js/main.33956cad.js"
   ]
 }
